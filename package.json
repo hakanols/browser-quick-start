@@ -6,6 +6,9 @@
   "directories": {
     "test": "test"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }, 
   "scripts": {
     "test": "node -r esm browser-quick-start.js /test/index.html"
   },
