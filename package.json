@@ -1,0 +1,42 @@
+{
+  "name": "tweetnacl",
+  "version": "1.0.0",
+  "description": "Port of TweetNaCl cryptographic library to JavaScript es6",
+  "main": "nacl-fast-es.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test-all": "node -r esm test/test-all.js",
+    "test-quick": "node -r esm test/test-quick.js",
+    "test-browser": "node -r esm start.js /test/browser/test-quick.html",
+    "bench": "node -r esm test/benchmark/bench.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hakanols/tweetnacl-js.git"
+  },
+  "keywords": [
+    "crypto",
+    "cryptography",
+    "curve25519",
+    "ed25519",
+    "encrypt",
+    "hash",
+    "key",
+    "nacl",
+    "poly1305",
+    "public",
+    "salsa20",
+    "signatures"
+  ],
+  "author": "TweetNaCl-js contributors",
+  "license": "Unlicense",
+  "homepage": "https://tweetnacl.js.org",
+  "devDependencies": {
+    "esm": "^3.2.25",
+    "tape": "^4.11.0",
+    "open": "^7.0.0",
+    "simplatic-http-server": "^1.1.1"
+  }
+}
