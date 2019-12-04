@@ -1,8 +1,8 @@
 # Why
 I run into problems while developing stand-alone es6 JavaScript library.
 My lib should work in both browser and node.
-I found out that es6 files have to be run throw a web server to avoid "Cross-Origin" problems.
-Found no web server that did what I wanted and still was simple.
+I found out that es6 files have to run through a web server to avoid "Cross-Origin" problems.
+Found no simple web server that did what I wanted.
 webpack-dev-server was to heavy for my simple needs. 
 
 # How to use
