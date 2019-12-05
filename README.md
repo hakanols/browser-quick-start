@@ -14,7 +14,7 @@ webpack-dev-server was to heavy for my simple needs.
 * Add to script in package.json. e.g:
 
        "scripts": {
-         "test-browser": "node -r esm node_modules/browser-quick-start /test/browser/test-quick.html"
+         "test-browser": "node -r esm node_modules/browser-quick-start /test/index.html"
        },
 * Run "npm install"
 * Run "npm run test-browser"
