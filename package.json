@@ -1,6 +1,6 @@
 {
   "name": "browser-quick-start",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Start http server on path unique port and open default browser",
   "main": "browser-quick-start.js",
   "directories": {
