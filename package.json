@@ -1,14 +1,11 @@
 {
   "name": "browser-quick-start",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Start http server on path unique port and open default browser",
   "main": "browser-quick-start.js",
   "directories": {
     "test": "test"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@hakanols"
-  }, 
   "scripts": {
     "test": "node -r esm browser-quick-start.js /test/index.html"
   },

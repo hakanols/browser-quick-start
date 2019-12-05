@@ -6,19 +6,16 @@ Found no simple web server that did what I wanted.
 webpack-dev-server was to heavy for my simple needs. 
 
 # How to use
-* Create a file named ".npmrc" and add:
-
-       registry=https://npm.pkg.github.com/hakanols
 * Add "browser-quick-start" and "esm" to your devDependencies in package.json
 
        "devDependencies": {
          "esm": "^3.2.25",
-         "browser-quick-start": "^1.0.0"
+         "browser-quick-start": "^1.0.1"
        },
 * Add to script in package.json. e.g:
 
        "scripts": {
-         "test-browser": "node -r esm browser-quick-start /test/browser/test-quick.html"
+         "test-browser": "node -r esm node_modules/browser-quick-start /test/browser/test-quick.html"
        },
 * Run "npm install"
 * Run "npm run test-browser"
