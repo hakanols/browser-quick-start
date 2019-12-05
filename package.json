@@ -23,9 +23,7 @@
   "homepage": "https://github.com/hakanols/browser-quick-start",
   "dependencies": {
     "open": "^7.0.0",
-    "simplatic-http-server": "^1.1.1"
-  },
-  "devDependencies": {
+    "simplatic-http-server": "^1.1.1",
     "esm": "^3.2.25"
   }
 }

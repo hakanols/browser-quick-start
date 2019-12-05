@@ -9,7 +9,6 @@ webpack-dev-server was to heavy for my simple needs.
 * Add "browser-quick-start" and "esm" to your devDependencies in package.json
 
        "devDependencies": {
-         "esm": "^3.2.25",
          "browser-quick-start": "^1.0.1"
        },
 * Add to script in package.json. e.g:
