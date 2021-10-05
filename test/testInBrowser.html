@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Testing</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script type="module">
+            const oldLogger = console.log;
+            const logger = document.getElementById('log');
+            let buffer = [];
+
+            function printToPage(message){
+                buffer = buffer.concat(message);
+                if (logger !== undefined){
+                    for (let i = 0; i < buffer.length; i++){
+                        if (typeof buffer[i] == 'object') {
+                            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(buffer[i], undefined, 2) : buffer[i]) + '<br/>';
+                        } else {
+                            logger.innerHTML += buffer[i] + '<br/>';
+                        }
+                    }
+                    buffer = [];
+                }
+            }
+
+            console.log = function (message) {
+                oldLogger(message);
+                printToPage(message)
+            }
+
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString)
+            if (!urlParams.has('file')){
+                console.log("No files to run");
+            }
+            console.log("Start");
+            for (const file of urlParams.get('file').split(',')) {
+                const fileParts = file.split('.');
+                const validCharacters = "^[a-zA-Z]+$";
+                if (fileParts.length != 2 || !fileParts[0].match(validCharacters) || !fileParts[1].match(validCharacters)) {
+                    console.log(file+' is not a valid file.');
+                    continue ;
+                }
+                console.log('Run file '+file);
+                await import('./'+file); 
+            }
+            console.log("Done");
+
+        </script>
+    </head>
+    <body>
+        <p>Testing</p>
+        <hr>
+        <pre id='log'></pre>
+    </body>
+</html>

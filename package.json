@@ -1,6 +1,6 @@
 {
   "name": "browser-quick-start",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Start http server on path unique port and open default browser",
   "main": "browser-quick-start.js",
   "type": "module",
@@ -8,8 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node browser-quick-start.js /test/index.html",
-    "test_param": "node browser-quick-start.js /test/index.html?file=gris,sugga,galt"
+    "hello": "node browser-quick-start.js /test/hello.html",
+    "test": "node browser-quick-start.js /test/testInBrowser.html?file=test.js"
   },
   "repository": {
     "type": "git",
