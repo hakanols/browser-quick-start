@@ -3,11 +3,13 @@
   "version": "1.0.3",
   "description": "Start http server on path unique port and open default browser",
   "main": "browser-quick-start.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "node -r esm browser-quick-start.js /test/index.html"
+    "test": "node browser-quick-start.js /test/index.html",
+    "test_param": "node browser-quick-start.js /test/index.html?file=gris,sugga,galt"
   },
   "repository": {
     "type": "git",
@@ -20,8 +22,5 @@
   ],
   "author": "Håkan Olsson",
   "license": "MIT",
-  "homepage": "https://github.com/hakanols/browser-quick-start",
-  "dependencies": {
-    "esm": "^3.2.25"
-  }
+  "homepage": "https://github.com/hakanols/browser-quick-start"
 }

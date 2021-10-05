@@ -1,7 +1,7 @@
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
-import { spawn } from 'child_process';
+import { spawnSync } from 'child_process';
 
 // maps file extention to MIME types
 // full list can be found here: https://www.freeformatter.com/mime-types-list.html
@@ -30,7 +30,7 @@ function handleRequest(req, res) {
 	const reqUrl = new URL(req.url, baseURL);
 
     const sanitizePath = path.normalize(reqUrl.pathname).replace(/^(\.\.[\/\\])+/, '');
-    let pathname = path.join(__dirname, sanitizePath);
+    let pathname = path.join(path.resolve(), sanitizePath);
    
     if(!fs.existsSync(pathname)) {
         res.statusCode = 404;
@@ -54,7 +54,7 @@ function handleRequest(req, res) {
     });
 }
 
-function open(url) {
+async function open(url) {
     let command;
 	switch(process.platform) {
 		case 'darwin':
@@ -70,15 +70,10 @@ function open(url) {
 			throw new Error('Unsupported platform: ' + process.platform);
 	}
 
-	return new Promise(function (resolve, reject) {
-		let process = spawn(command, [url]);
-	    process.on('close', function (code) {
-		    resolve(code);
-	    });
-	    process.on('error', function (err) {
-		    reject(err);
-	    });
-	});
+	await spawnSync(command, [url], {
+        encoding: 'utf-8',
+        timeout: 2000
+    });
 }
 
 function hashString(text){
@@ -102,10 +97,10 @@ async function start(){
 		return;
 	}
 	const subPath = process.argv[2];
-	if (!fs.existsSync('.'+subPath)){
+	/*if (!fs.existsSync('.'+subPath)){
 		console.log("No file ");
 		return;
-	}
+	}*/
 	const seed = hashString(process.cwd()+subPath);
 	const portNumber = createPortNumber(seed);
 	const server = http.createServer(handleRequest);
