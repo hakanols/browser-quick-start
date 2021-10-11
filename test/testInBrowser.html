@@ -6,19 +6,12 @@
         <script type="module">
             const oldLogger = console.log;
             const logger = document.getElementById('log');
-            let buffer = [];
 
             function printToPage(message){
-                buffer = buffer.concat(message);
-                if (logger !== undefined){
-                    for (let i = 0; i < buffer.length; i++){
-                        if (typeof buffer[i] == 'object') {
-                            logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(buffer[i], undefined, 2) : buffer[i]) + '<br/>';
-                        } else {
-                            logger.innerHTML += buffer[i] + '<br/>';
-                        }
-                    }
-                    buffer = [];
+                if (typeof message == 'object') {
+                    logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message, undefined, 2) : message) + '<br/>';
+                } else {
+                    logger.innerHTML += message + '<br/>';
                 }
             }
 
@@ -27,23 +20,27 @@
                 printToPage(message)
             }
 
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString)
-            if (!urlParams.has('file')){
-                console.log("No files to run");
-            }
-            console.log("Start");
-            for (const file of urlParams.get('file').split(',')) {
-                const fileParts = file.split('.');
-                const validCharacters = "^[a-zA-Z]+$";
-                if (fileParts.length != 2 || !fileParts[0].match(validCharacters) || !fileParts[1].match(validCharacters)) {
-                    console.log(file+' is not a valid file.');
-                    continue ;
+            async function run(){
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString)
+                if (!urlParams.has('file')){
+                    console.log("No files to run");
                 }
-                console.log('Run file '+file);
-                await import('./'+file); 
+                console.log("Start");
+                for (const file of urlParams.get('file').split(',')) {
+                    const fileParts = file.split('.');
+                    const validCharacters = "^[a-zA-Z]+$";
+                    if (fileParts.length != 2 || !fileParts[0].match(validCharacters) || !fileParts[1].match(validCharacters)) {
+                        console.log(file+' is not a valid file.');
+                        continue ;
+                    }
+                    console.log('Run file '+file);
+                    await import('./'+file); 
+                }
+                console.log("Done");
             }
-            console.log("Done");
+
+            window.onload = run();
 
         </script>
     </head>
