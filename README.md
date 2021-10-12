@@ -11,7 +11,7 @@ webpack-dev-server was to heavy for my simple needs.
 * Add "browser-quick-start" devDependencies in package.json
 
        "devDependencies": {
-         "browser-quick-start": "^1.0.1"
+         "browser-quick-start": "^1.1.1"
        },
 * Ckeck package.json that this is included
 
@@ -20,7 +20,7 @@ webpack-dev-server was to heavy for my simple needs.
 * Add to script in package.json. e.g:
 
        "scripts": {
-         "test": "node node_modules/browser-quick-start /test/index.html"
+         "test": "node browser-quick-start /test/index.html"
        },
 * Run "npm install"
 * Run "npm run test"
