@@ -7,31 +7,39 @@
             const oldLogger = console.log;
             const logger = document.getElementById('log');
 
-            function printToPage(message){
+            function printToPage(message, style){
+                let row = style != undefined ? '<div style="'+style+';">':'<div>';
                 if (typeof message == 'object') {
-                    logger.innerHTML += (JSON && JSON.stringify ? JSON.stringify(message, undefined, 2) : message) + '<br/>';
+                    row += (JSON && JSON.stringify ? JSON.stringify(message, undefined, 2) : message);
                 } else {
-                    logger.innerHTML += message + '<br/>';
+                    row += message;
                 }
+                logger.innerHTML += row+'</div>';
             }
 
-            console.log = function (message) {
-                oldLogger(message);
-                printToPage(message)
+            function wrapConsolePrint(oldPrinter, style) {
+                return function(message){
+                    oldPrinter(message)
+                    printToPage(message, style);
+                }   
+            }
+
+            function noPath(file){
+                const fileParts = file.split('.');
+                const validCharacters = "^[a-zA-Z]+$";
+                return fileParts.length == 2 && fileParts[0].match(validCharacters) && fileParts[1].match(validCharacters)
             }
 
             async function run(){
                 const queryString = window.location.search;
                 const urlParams = new URLSearchParams(queryString)
                 if (!urlParams.has('file')){
-                    console.log("No files to run");
+                    console.warn("No files to run");
                 }
                 console.log("Start");
                 for (const file of urlParams.get('file').split(',')) {
-                    const fileParts = file.split('.');
-                    const validCharacters = "^[a-zA-Z]+$";
-                    if (fileParts.length != 2 || !fileParts[0].match(validCharacters) || !fileParts[1].match(validCharacters)) {
-                        console.log(file+' is not a valid file.');
+                    if (!noPath(file)){
+                        console.warn(file+' is not a valid file.');
                         continue ;
                     }
                     console.log('Run file '+file);
@@ -39,6 +47,11 @@
                 }
                 console.log("Done");
             }
+
+            console.log = wrapConsolePrint(console.log);
+            console.debug = wrapConsolePrint(console.debug, "color:MediumSeaGreen");
+            console.warn = wrapConsolePrint(console.warn, "color:Orange");
+            console.error = wrapConsolePrint(console.error, "color:Tomato");
 
             window.onload = run();
 
