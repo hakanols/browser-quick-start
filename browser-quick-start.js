@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // https://github.com/hakanols/browser-quick-start
 
 import fs from 'fs';
@@ -132,8 +133,8 @@ async function start(){
     const portNumber = createPortNumber(seed);
     const server = http.createServer(handleRequest);
     server.listen(portNumber);
-    let fulUrl = 'http://127.0.0.1:'+portNumber+url;
-    await open(fulUrl);
+    let fullUrl = 'http://127.0.0.1:'+portNumber+url;
+    await open(fullUrl);
 }
 
 start();
