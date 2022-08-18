@@ -7,9 +7,9 @@ All with no dependencies except NodeJS
 
 # How to use
 ### Raw
-Copy "browser-quick-start.js" to your repo and run with ("/test/index.html" is the page you want to open.)
+Copy "browser-quick-start.js" to your repo and run with ("/test/example.html" is the page you want to open.)
 
-    node browser-quick-start.js /test/index.html
+    node browser-quick-start.mjs /test/example.html
     
 ### NPM
 
@@ -19,10 +19,10 @@ Copy "browser-quick-start.js" to your repo and run with ("/test/index.html" is t
          "browser-quick-start": "^1.1.2"
        },
   
-* Add to script in package.json. ("/test/index.html" is the page you want to open.)
+* Add to script in package.json. ("/test/example.html" is the page you want to open.)
 
        "scripts": {
-         "test": "browser-quick-start /test/index.html"
+         "test": "browser-quick-start /test/example.html"
        },
        
 * Run "npm install"

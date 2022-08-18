@@ -3,14 +3,14 @@
   "version": "1.1.3",
   "description": "Start http server on path unique port and open default browser",
   "type": "module",
-  "exports": "./browser-quick-start.js",
-  "bin": "./browser-quick-start.js",
+  "exports": "./browser-quick-start.mjs",
+  "bin": "./browser-quick-start.mjs",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "hello": "node browser-quick-start.js /test/hello.html",
-    "test": "node browser-quick-start.js /test/runJs.html?file=test.js"
+    "hello": "node browser-quick-start.mjs /test/hello.html",
+    "test": "node browser-quick-start.mjs /test/runJs.html?file=test.js"
   },
   "repository": {
     "type": "git",
