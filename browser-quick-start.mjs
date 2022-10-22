@@ -59,34 +59,21 @@ function handleRequest(req, res) {
     });
 }
 
-async function open(target, appName) {
+async function open(target) {
     // Started with code from https://github.com/pwnall/node-open
     let opener;
-
+    
     switch (process.platform) {
     case 'darwin':
-        if (appName) {
-            opener = 'open -a "' + escape(appName) + '"';
-        } else {
-            opener = 'open';
-        }
+        opener = 'open';
         break;
     case 'win32':
         // if the first parameter to start is quoted, it uses that as the title
         // so we pass a blank title so we can quote the file we are opening
-        if (appName) {
-            opener = 'start "" "' + escape(appName) + '"';
-        } else {
-            opener = 'start ""';
-        }
+        opener = 'start ""';
         break;
     default:
-        if (appName) {
-            opener = escape(appName);
-        } else {
-            // use Portlands xdg-open everywhere else
-            opener = path.join(path.resolve(), '../vendor/xdg-open');
-        }
+        opener = 'xdg-open ';
         break;
     }
 
@@ -94,12 +81,7 @@ async function open(target, appName) {
         opener = 'sudo -u ' + process.env.SUDO_USER + ' ' + opener;
     }
     console.log(target)
-    console.log(escape(target))
-    return execSync(opener + ' "' + escape(target) + '"');
-}
-
-function escape(s) {
-    return s.replace(/"/g, '\\\"');
+    return execSync(opener + ' "' + target.replace(/"/g, '\\\"') + '"');
 }
 
 function hashString(text){
