@@ -9,7 +9,7 @@ Should work on Windows, Linux and MAC.
 # How to use
 
 ### Standalone
-* Just add copy browser-quick-start.mjs to your project and run with node. E.g.
+* Just copy browser-quick-start.mjs to your project and run with node. E.g.
 
        node browser-quick-start.mjs /test/hello.html
 
