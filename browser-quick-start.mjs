@@ -1,5 +1,15 @@
 #!/usr/bin/env node
-// https://github.com/hakanols/browser-quick-start
+/***********************************
+Source: https://github.com/hakanols/browser-quick-start
+
+Standalone program that distribute static webpages as a local web server and open a 
+browser to that page. This to void "Cross-Origin" problems with ES6 and  simplifying
+development. No dependencies except NodeJS v12. Should work on Windows, Linux and MAC.
+
+How to use:
+Just add copy browser-quick-start.mjs to your project and run with node. E.g.
+> node browser-quick-start.mjs /test/hello.html
+***********************************/
 
 import fs from 'fs';
 import http from 'http';
@@ -105,7 +115,7 @@ async function start(){
         return;
     }
     const url = process.argv[2];
-    const [path, params] = url.split('?')
+    const [path, _] = url.split('?')
     if (!fs.existsSync('.'+path)){
         console.log("No file ");
         return;
